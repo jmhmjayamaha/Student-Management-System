@@ -1,0 +1,9 @@
+org\seusl\fas\model\Administrator.class
+org\seusl\fas\model\Student.class
+org\seusl\fas\model\Teacher.class
+org\seusl\fas\controller\TeacherController.class
+org\seusl\fas\controller\StudentContoller.class
+org\seusl\fas\Application.class
+org\seusl\fas\controller\AdministratorController.class
+org\seusl\fas\model\Subject.class
+org\seusl\fas\controller\SubjectController.class
