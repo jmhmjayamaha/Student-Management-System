@@ -81,7 +81,7 @@ app.controller('notificationController', function($scope, $http) {
 				</div>
 
 				<ul class="nav">
-					<li><a href="dashboard.html"> <i class="pe-7s-graph"></i>
+					<li><a href="dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Dashboard</p>
 					</a></li>
 					<li><a href="user.jsp"> <i class="pe-7s-user"></i>

@@ -28,5 +28,6 @@
 		<mapping class="org.seusl.fas.model.Subject" />
 		<mapping class="org.seusl.fas.model.Notification" />
 		<mapping class="org.seusl.fas.model.Result" />
+		<mapping class="org.seusl.fas.model.StudentTask" />
 	</session-factory>
 </hibernate-configuration>
