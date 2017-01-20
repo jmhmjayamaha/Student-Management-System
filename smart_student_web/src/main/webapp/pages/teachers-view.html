@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+/* var app = angular.module("myApp", []);
+app.controller('teacherController', function($scope, $http) {
+	$http.get('http://localhost:8080/api/teacher-list').then(function(response) {
+		$scope.teachers = response.data;
+	});
+});  */
+</script>
+</head>
+<body>
+ <div align="center" ng-controller="teacherController">
+		<!--  Search : <input type="text" id="id" name="id" placeholder="search"
+			ng-model="id" /> <input type="button" ng-click="GetAllData()"
+			value="click" /> --> 
+		<div>
+			<table width="500" 
+				border="1">
+				<caption>teacher Details</caption>
+				<tr>
+					<th> ID</th>
+					<th> Name</th>
+					<th> Address</th>
+					<th> Email</th>
+					<th> telNo</th>
+					<th> Qualification</th>
+				</tr>
+				<tr ng-repeat="t in teachers">
+					<td>{{ t.id }}</td>
+					<td>{{ t.name }}</td>
+					<td>{{ t.address}}</td>
+					<td>{{ t.email }}</td>
+					<td>{{ t.telNo }}</td>
+					<td>{{ t.qualification }}</td>
+				</tr>
+				
+			</table>
+		</div>
+	</div> 
+</body>
+</html>
