@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%
+    	if(session.getAttribute("user-id") == null) {
+    		response.sendRedirect("../index.html");
+    	}
+    	out.print("<input type='hidden' value='"+ session.getAttribute("user-id")+"' id='hide'/>");
+    %>
 <!doctype html>
 <html lang="en" ng-app="myApp">
 <head>
@@ -264,7 +272,7 @@ app.controller('notificationController', function($scope, $http) {
                         <div class="card ">
                             <div class="header">
                                 <h4 class="title">Tasks</h4>
-                                <p class="category">Backend development</p>
+                                <p class="category">Academic development</p>
                             </div>
                             <div class="content">
                                 <div class="table-full-width">
@@ -396,7 +404,7 @@ app.controller('notificationController', function($scope, $http) {
                         </li>
                         <li>
                             <a href="#">
-                                Company
+                                SEUSL
                             </a>
                         </li>
                         <li>
@@ -412,8 +420,8 @@ app.controller('notificationController', function($scope, $http) {
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
+						&copy; 2017 <a href="#">Dulari Ranaweera</a>, made for the SEUSL
+					</p>
             </div>
         </footer>
 
