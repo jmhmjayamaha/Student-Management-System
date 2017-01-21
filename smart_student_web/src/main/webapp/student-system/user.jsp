@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="user.html">
+                    <a href="user.jsp">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -107,12 +107,12 @@
                         <p>Your Feedback</p>
                     </a>
                 </li>
-                <li>
+               <!--  <li>
                     <a href="maps.html">
                         <i class="pe-7s-map-marker"></i>
                         <p>Maps</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="notifications.jsp">
                         <i class="pe-7s-bell"></i>
@@ -178,7 +178,7 @@
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
+                                <li><a href="../pdf/2016GCEOExamTimetable.pdf" target="_blank">Time Table</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li><a href="#">Another action</a></li>

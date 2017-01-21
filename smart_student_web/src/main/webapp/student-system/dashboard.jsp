@@ -106,12 +106,12 @@ app.controller('tasksController', function($scope, $http) {
                         <p>Your Feedback</p>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="maps.html">
                         <i class="pe-7s-map-marker"></i>
                         <p>Maps</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="notifications.jsp">
                         <i class="pe-7s-bell"></i>
@@ -177,7 +177,7 @@ app.controller('tasksController', function($scope, $http) {
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
+                                <li><a href="../pdf/2016GCEOExamTimetable.pdf" target="_blank">Time Table</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li><a href="#">Another action</a></li>
