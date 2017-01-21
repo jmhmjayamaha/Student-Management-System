@@ -72,7 +72,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                    STUDENT'S SITE
                 </a>
             </div>
 
@@ -102,9 +102,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="feedback.jsp">
                         <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                        <p>Your Feedback</p>
                     </a>
                 </li>
                 <li>
@@ -120,9 +120,9 @@
                     </a>
                 </li>
 				<li class="active-pro">
-                    <a href="upgrade.html">
+                    <a href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
                         <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>SEUSL Library</p>
                     </a>
                 </li>
             </ul>

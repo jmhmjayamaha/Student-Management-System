@@ -77,7 +77,7 @@ app.controller('notificationController', function($scope, $http) {
 			<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="http://www.creative-tim.com" class="simple-text">
-						Creative Tim </a>
+						STUDENT'S SITE </a>
 				</div>
 
 				<ul class="nav">
@@ -94,8 +94,8 @@ app.controller('notificationController', function($scope, $http) {
 					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>My Result</p>
 					</a></li>
-					<li><a href="icons.html"> <i class="pe-7s-science"></i>
-							<p>Icons</p>
+					<li><a href="feedback.jsp"> <i class="pe-7s-science"></i>
+							<p>Your Feedback</p>
 					</a></li>
 					<li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
@@ -103,9 +103,9 @@ app.controller('notificationController', function($scope, $http) {
 					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
 							<p>Notifications</p>
 					</a></li>
-					<li class="active-pro"><a href="upgrade.html"> <i
+					<li class="active-pro"><a href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1"> <i
 							class="pe-7s-rocket"></i>
-							<p>Upgrade to PRO</p>
+							<p>SEUSL Library</p>
 					</a></li>
 				</ul>
 			</div>

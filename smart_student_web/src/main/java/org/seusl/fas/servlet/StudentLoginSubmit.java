@@ -16,13 +16,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.SourceType;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.seusl.fas.model.Administrator;
+import org.seusl.fas.model.*;
 
 @WebServlet("/studentLogin")
-public class StudentLogin extends HttpServlet{
+public class StudentLoginSubmit extends HttpServlet{
 
 	private SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
@@ -34,7 +32,7 @@ public class StudentLogin extends HttpServlet{
 		
 		Session session = new Configuration().configure().buildSessionFactory().openSession();
 		Transaction t = null;
-		List<org.seusl.fas.model.StudentLogin> list = new ArrayList<org.seusl.fas.model.StudentLogin>();
+		List<StudentLogin> list = new ArrayList<StudentLogin>();
 		
 		try{
 			t = session.beginTransaction();
@@ -42,7 +40,7 @@ public class StudentLogin extends HttpServlet{
 			list = session.createQuery("from StudentLogin where student_stuId='"+ username +"' and password = '"+password+ "'").list();
 			
 			t.commit();
-			Iterator<org.seusl.fas.model.StudentLogin> itr = list.iterator();
+			Iterator itr = list.iterator();
 			
 			if(itr.hasNext()) {				
 				HttpSession se = req.getSession();

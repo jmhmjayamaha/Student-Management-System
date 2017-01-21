@@ -42,25 +42,51 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script>
-	var test = document.getElementById("hide").value;
+<script type="text/javascript">
+var app = angular.module("myApp", []);
 
-	var app = angular.module("myApp", []);
+app.controller('notificationController', function($scope, $http) {
+	$http.get("http://localhost:8080/api/notification-list").then(
+			function(response) {
+				$scope.notification = response.data;
+			});
+});
+	$(document)
+			.ready(
+					function() {
+						$("#form1")
+								.submit(
+										function(e) {
+											var subject = document
+													.getElementById("subject").value;
+											var message = document
+													.getElementById("message").value;
 
-	app.controller('resultController', function($scope, $http) {
-		$http.get("http://localhost:8080/api/result-search?id=" + test).then(
-				function(response) {
-					$scope.results = response.data;
-				});
-	});
-	app.controller('notificationController', function($scope, $http) {
-		$http.get("http://localhost:8080/api/notification-list").then(
-				function(response) {
-					$scope.notification = response.data;
-				});
-	});
+											var url = "http://localhost:8080/api/feedback?subject="
+													+ subject
+													+ "&message="
+													+ message;
+
+											$
+													.ajax({
+														type : "GET",
+														url : url,
+
+														success : function(data) {
+															alert("successfully updated");
+															document
+																	.getElementById("subject").value = "";
+															document
+																	.getElementById("message").value = "";
+														}
+													});
+
+											e.preventDefault();
+										});
+					}); 
 </script>
 </head>
 <body>
@@ -88,11 +114,11 @@
 					<li><a href="table.jsp"> <i class="pe-7s-note2"></i>
 							<p>Table List</p>
 					</a></li>
-					<li class="active"><a href="result.jsp"> <i
-							class="pe-7s-news-paper"></i>
+					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>My Result</p>
 					</a></li>
-					<li><a href="feedback.jsp"> <i class="pe-7s-science"></i>
+					<li class="active"><a href="feedback.jsp"> <i
+							class="pe-7s-science"></i>
 							<p>Your Feedback</p>
 					</a></li>
 					<li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
@@ -101,8 +127,9 @@
 					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
 							<p>Notifications</p>
 					</a></li>
-					<li class="active-pro"><a href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1"> <i
-							class="pe-7s-rocket"></i>
+					<li class="active-pro"><a
+						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
+							<i class="pe-7s-rocket"></i>
 							<p>SEUSL Library</p>
 					</a></li>
 				</ul>
@@ -119,7 +146,7 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Table List</a>
+						<a class="navbar-brand" href="#">Feedback</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -166,25 +193,37 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Results Table</h4>
-									<p class="category">Here is a academic results</p>
+									<h4 class="title">Student Feedback</h4>
+									<p class="category">Please provide the your feedback</p>
 								</div>
-								<div class="content table-responsive table-full-width"
-									ng-controller="resultController">
-									<table class="table table-hover table-striped">
-										<thead>
-											<th>Subject Id</th>
-											<th>Result</th>
-										</thead>
-										<tbody>
-											<tr ng-repeat="r in results">
-												<td>{{ r.subjectName }}</td>
-												<td>{{ r.result }}</td>
-											</tr>
-										</tbody>
-									</table>
 
-								</div>
+								<form action="http://localhost:8080/api/feedback" method="GET"
+									id="form1" onsubmit="return doSubmit()">
+									<span style="padding: 10 10 10 10">
+										<div class="row" style="padding: 10 10 10 10">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Subject</label> <input type="text"
+														class="form-control" placeholder="subject" id="subject"
+														name="subject" required>
+												</div>
+											</div>
+										</div>
+
+										<div class="row" style="padding: 10 10 10 10">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>message</label>
+													<textarea rows="5" class="form-control"
+														placeholder="Here can be your description" id="message"
+														name="message" required></textarea>
+												</div>
+											</div>
+										</div> <input type="submit" class="btn btn-info btn-fill pull-right"
+										style="padding: 10 10 10 10" value="Update Profile">
+										<div class="clearfix"></div>
+									</span>
+								</form>
 							</div>
 						</div>
 
