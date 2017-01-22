@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.seusl.fas.model.Administrator;
 
-@WebServlet("/pages/adminLogin")
+@WebServlet("/admin-system/adminLogin")
 public class AdminLogin extends HttpServlet {
 	 
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -45,10 +45,12 @@ public class AdminLogin extends HttpServlet {
 				Administrator admin = itr.next();
 				HttpSession se = req.getSession();
 				se.setAttribute("name", admin.getName());
-				resp.sendRedirect("admin-page.jsp");
+				resp.sendRedirect("dashboard.jsp");
+//				System.out.println("success ");
 			}
 			else {
 				resp.sendRedirect("admin-login.html");
+//				System.out.println("unsuccessful");
 			}
 		}catch(HibernateException e){
 			if(t!=null){
