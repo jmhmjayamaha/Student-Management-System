@@ -47,16 +47,15 @@
 
 $(document).ready(function() {
 	$("#form1").submit(function(e) {
-		var id = document.getElementById("stuId").value;
-		var name = document.getElementById("stuName").value;
-		var address = document.getElementById("stuAddress").value;
+		var id = document.getElementById("tId").value;
+		var name = document.getElementById("tName").value;
+		var address = document.getElementById("tAddress").value;
 		var telNo = document.getElementById("telNo").value;
 		var email = document.getElementById("email").value;
-		var year = document.getElementById("acedemicYear").value;
+		var qualification = document.getElementById("qualification").value;
 		
-
-		var url = "http://localhost:8080/api/student-save?stuId="+ id +"&name="+ name +"&address="+address+"&telNo="+telNo+"&email="+email+"&acedemicYear="+year;
-
+		var url = "http://localhost:8080/api/teacher-save?teacherId="+ id +"&name="+ name +"&address="+address+"&telNo="+telNo+"&email="+email+"&qualification=" + qualification;
+		
 		$
 			.ajax({
 				type : "GET",
@@ -64,12 +63,12 @@ $(document).ready(function() {
 
 				success : function(data) {
 					alert("successfully updated");
-					document.getElementById("stuId").value = "";
-					document.getElementById("stuName").value= "";
-					document.getElementById("stuAddress").value= "";
+					document.getElementById("tId").value = "";
+					document.getElementById("tName").value= "";
+					document.getElementById("tAddress").value= "";
 					document.getElementById("telNo").value= "";
 					document.getElementById("email").value= "";
-					document.getElementById("acedemicYear").value= "";
+					document.getElementById("qualification").value= "";
 				}
 			});
 
@@ -97,10 +96,10 @@ $(document).ready(function() {
 					<li ><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Dashboard</p>
 					</a></li>
-					<li class="active"><a href="../student.jsp"> <i class="pe-7s-user"></i>
+					<li ><a href="../student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
 					</a></li>
-					<li><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
+					<li class="active"><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
 							<p>Teachers</p>
 					</a></li>
 					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
@@ -158,16 +157,16 @@ $(document).ready(function() {
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <li><a href=""> Account </a></li> -->
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> Student <b class="caret"></b>
+								data-toggle="dropdown"> Teacher <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
 									<li><a 
-										href="../student.jsp">View</a></li>
-									<li><a href="student-insert.jsp">Insert</a></li>
-									<li><a href="student-update.jsp">Update</a></li>
-									<li><a href="student-delete.jsp">Delete</a></li>									
+										href="../teacher.jsp">View</a></li>
+									<li><a href="teacher-insert.jsp">Insert</a></li>
+									<!-- <li><a href="teacher-update.jsp">Update</a></li>
+									<li><a href="teacher-delete.jsp">Delete</a></li> -->									
 								</ul></li>
-							<li><a href="logout.jsp"> Log out </a></li>
+							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>
 					</div>
 				</div>
@@ -180,8 +179,8 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student Insert</h4>
-									<p class="category">Insert student details</p>
+									<h4 class="title">Teacher Insert</h4>
+									<p class="category">Insert Teacher details</p>
 								</div>
 
 								<form action="" method="GET"
@@ -190,9 +189,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Id</label> <input type="text"
-														class="form-control" placeholder="Student Id" id="stuId"
-														name="subject" required>
+													<label>Teacher Id</label> <input type="text"
+														class="form-control" placeholder="Teacher Id" id="tId"
+														name="tId" required>
 												</div>
 											</div>
 										</div>
@@ -200,9 +199,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Name</label> <input type="text"
-														class="form-control" placeholder="Student Name" id="stuName"
-														name="subject" required>
+													<label>Teacher's Name</label> <input type="text"
+														class="form-control" placeholder="Teacher Name" id="tName"
+														name="tName" required>
 												</div>
 											</div>
 										</div>
@@ -210,9 +209,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Address</label> <input type="text"
-														class="form-control" placeholder="Student Address" id="stuAddress"
-														name="subject" required>
+													<label>Teacher's Address</label> <input type="text"
+														class="form-control" placeholder="Teacher Address" id="tAddress"
+														name="tAddress" required>
 												</div>
 											</div>
 										</div>
@@ -232,7 +231,7 @@ $(document).ready(function() {
 												<div class="form-group">
 													<label>Email</label> <input type="email"
 														class="form-control" placeholder="Email" id="email"
-														name="subject" required>
+														name="email" required>
 												</div>
 											</div>
 										</div>
@@ -240,9 +239,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Acedemic Year</label> <input type="text"
-														class="form-control" placeholder="Acedemic Year" id="acedemicYear"
-														name="acedemicYear" required>
+													<label>Qualification</label> <input type="text"
+														class="form-control" placeholder="Qualification" id="qualification"
+														name="Qualification" required>
 												</div>
 											</div>
 										</div>
