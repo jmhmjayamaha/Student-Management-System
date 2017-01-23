@@ -81,8 +81,8 @@
 							class="pe-7s-note2"></i>
 							<p>Teacher</p>
 					</a></li>
-					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
-							<p>My Result</p>
+					<li><a href="subject/subject-view.jsp"> <i class="pe-7s-news-paper"></i>
+							<p>Subject</p>
 					</a></li>
 					<li><a href="feedback.jsp"> <i class="pe-7s-science"></i>
 							<p>Your Feedback</p>

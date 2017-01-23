@@ -47,16 +47,12 @@
 
 $(document).ready(function() {
 	$("#form1").submit(function(e) {
-		var id = document.getElementById("stuId").value;
-		var name = document.getElementById("stuName").value;
-		var address = document.getElementById("stuAddress").value;
-		var telNo = document.getElementById("telNo").value;
-		var email = document.getElementById("email").value;
-		var year = document.getElementById("acedemicYear").value;
+		var id = document.getElementById("subId").value;
+		var name = document.getElementById("subName").value;
+		var teacherId = document.getElementById("teacherId").value;
 		
-
-		var url = "http://localhost:8080/api/student-save?stuId="+ id +"&name="+ name +"&address="+address+"&telNo="+telNo+"&email="+email+"&acedemicYear="+year;
-
+		var url = "http://localhost:8080/api/subject-save?subjectId="+id+"&name="+ name +"&teacher_teacherId="+teacherId;
+		
 		$
 			.ajax({
 				type : "GET",
@@ -64,12 +60,9 @@ $(document).ready(function() {
 
 				success : function(data) {
 					alert("successfully updated");
-					document.getElementById("stuId").value = "";
-					document.getElementById("stuName").value= "";
-					document.getElementById("stuAddress").value= "";
-					document.getElementById("telNo").value= "";
-					document.getElementById("email").value= "";
-					document.getElementById("acedemicYear").value= "";
+					document.getElementById("subId").value = "";
+					document.getElementById("subName").value= "";
+					document.getElementById("teacherId").value= "";
 				}
 			});
 
@@ -97,13 +90,13 @@ $(document).ready(function() {
 					<li ><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Dashboard</p>
 					</a></li>
-					<li class="active"><a href="../student.jsp"> <i class="pe-7s-user"></i>
+					<li ><a href="../student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
 					</a></li>
-					<li><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
+					<li ><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
 							<p>Teachers</p>
 					</a></li>
-					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
+					<li class="active"> <a href="subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
 					<li ><a href="feedback.jsp"> <i
@@ -114,7 +107,7 @@ $(document).ready(function() {
 							<p>Maps</p>
 					</a></li> -->
 					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
-							<p>Approvals</p>
+							<p>Approval</p>
 					</a></li>
 					<li class="active-pro"><a
 						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
@@ -135,7 +128,7 @@ $(document).ready(function() {
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Student</a>
+						<a class="navbar-brand" href="#">Teacher</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -158,14 +151,14 @@ $(document).ready(function() {
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <li><a href=""> Account </a></li> -->
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> Student <b class="caret"></b>
+								data-toggle="dropdown"> Suject <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
 									<li><a 
-										href="../student.jsp">View</a></li>
-									<li><a href="student-insert.jsp">Insert</a></li>
-									<li><a href="student-update.jsp">Update</a></li>
-									<li><a href="student-delete.jsp">Delete</a></li>									
+										href="subject-view.jsp">View</a></li>
+									<li><a href="subject-insert.jsp">Insert</a></li>
+									<!-- <li><a href="teacher-update.jsp">Update</a></li>
+									<li><a href="teacher-delete.jsp">Delete</a></li> -->									
 								</ul></li>
 							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>
@@ -180,8 +173,8 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student Insert</h4>
-									<p class="category">Insert student details</p>
+									<h4 class="title">Subject Insert</h4>
+									<p class="category">Insert Subject details</p>
 								</div>
 
 								<form action="" method="GET"
@@ -190,9 +183,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Id</label> <input type="text"
-														class="form-control" placeholder="Student Id" id="stuId"
-														name="subject" required>
+													<label>Subject Id</label> <input type="text"
+														class="form-control" placeholder="Subject Id" id="subId"
+														name="subId" required>
 												</div>
 											</div>
 										</div>
@@ -200,9 +193,9 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Name</label> <input type="text"
-														class="form-control" placeholder="Student Name" id="stuName"
-														name="subject" required>
+													<label>Subject Name</label> <input type="text"
+														class="form-control" placeholder="Subject Name" id="subName"
+														name="subName" required>
 												</div>
 											</div>
 										</div>
@@ -210,46 +203,13 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Student Address</label> <input type="text"
-														class="form-control" placeholder="Student Address" id="stuAddress"
-														name="subject" required>
+													<label>Responsible Teacher</label> <input type="text"
+														class="form-control" placeholder="Responsible Teacher" id="teacherId"
+														name="teacherId" required>
 												</div>
 											</div>
 										</div>
 										
-										<div class="row" style="padding: 10 10 10 10">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>Tel No</label> <input type="text"
-														class="form-control" placeholder="Tellephone Number " id="telNo"
-														name="telNo" required>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row" style="padding: 10 10 10 10">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>Email</label> <input type="email"
-														class="form-control" placeholder="Email" id="email"
-														name="subject" required>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row" style="padding: 10 10 10 10">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>Acedemic Year</label> <input type="text"
-														class="form-control" placeholder="Acedemic Year" id="acedemicYear"
-														name="acedemicYear" required>
-												</div>
-											</div>
-										</div>
-										
-										
-										
-
 										<!-- <div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
