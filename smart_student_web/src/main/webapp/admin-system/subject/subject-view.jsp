@@ -44,6 +44,7 @@
 <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 <script>
 	var app = angular.module("myApp", []);
 
@@ -53,6 +54,30 @@
 					$scope.subjects = response.data;
 				});
 	});
+	
+	
+	$(document).ready(function() {
+		$("#delete").click(function(e) {
+			var val = $('#delete').val();
+		
+			var url = "http://localhost:8080/api/subject-delete?subjectId="+val;
+			
+			$
+				.ajax({
+					type : "GET",
+					url : url,
+
+					success : function(data) {
+						alert("successfully deleted");
+					}
+				});
+
+			e.preventDefault();
+		});
+	}); 
+	
+	
+	
 </script>
 </head>
 <body>
@@ -164,54 +189,32 @@
 									ng-controller="subjectController">
 									<table class="table table-hover table-striped">
 										<thead>
+											<th>Select</th>
 											<th>Subject ID</th>
 											<th>Subject Name</th>
 											<th>Responsible Teacher</th>
-											
+											<th>Action</th>
 										</thead>
 										<tbody>
 											<tr ng-repeat="s in subjects">
-												<td>{{ s.id }}</td>
+												<td><label class="checkbox"> <input
+														type="checkbox" value="{{ s.id }}" data-toggle="checkbox"
+														id="cehckbox">
+												</label></td>
+												<td id="deleteId">{{ s.id }}</td>
 												<td>{{ s.name }}</td>
 												<td>{{ s.teacherId }}</td>
-												
+												<td><button type="button" rel="tooltip" title="Remove"
+														id="delete" value="{{ s.id }}"
+														class="btn btn-danger btn-simple btn-xs">
+														<i class="fa fa-times"></i>
+													</button></td>
 											</tr>
 										</tbody>
 									</table>
-
 								</div>
 							</div>
 						</div>
-
-
-						<!-- <div class="col-md-12">
-							<div class="card card-plain">
-								<div class="header">
-									<h4 class="title">Subject Table</h4>
-									<p class="category">Eligible courses for you</p>
-								</div>
-								<div class="content table-responsive table-full-width"
-									ng-controller="subjectController">
-									<table class="table table-hover">
-										<thead>
-											<td>Subject Id</td>
-											<td>Subject Name</td>
-											<td>Teacher's ID</td>
-										</thead>
-										<tbody>
-											<tr ng-repeat="sub in subjects">
-												<td>{{ sub.id }}</td>
-												<td>{{ sub.name }}</td>
-												<td>{{ sub.teacherId }}</td>
-											</tr>
-										</tbody>
-									</table>
-
-								</div>
-							</div>
-						</div> -->
-
-
 					</div>
 				</div>
 			</div>
