@@ -102,10 +102,10 @@ $(document).ready(function() {
 					<li class="active"><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
 							<p>Teachers</p>
 					</a></li>
-					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
+					<li><a href="../subject/subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li ><a href="feedback.jsp"> <i
+					<li ><a href="../notifications/notification-insert.jsp"> <i
 							class="pe-7s-science"></i>
 							<p>Notification</p>
 					</a></li>

@@ -106,7 +106,7 @@ $(document).ready(function() {
 					<li><a href="result.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li ><a href="feedback.jsp"> <i
+					<li ><a href="../notifications/notification-insert.jsp"> <i
 							class="pe-7s-science"></i>
 							<p>Notification</p>
 					</a></li>

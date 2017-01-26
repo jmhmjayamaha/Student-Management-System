@@ -7,13 +7,13 @@
 	out.print("<input type='hidden' value='" + session.getAttribute("name") + "' id='hide'/>");
 %>
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" >
 <head>
 <meta charset="utf-8" />
 <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Administration login page</title>
+<title>Notification page</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -47,13 +47,8 @@
 
 $(document).ready(function() {
 	$("#form1").submit(function(e) {
-		var messageType = $("#mesType").val();
+		var messageType = $("#msgType").val();
 		var message = $("#message").val();
-		var formData = {
-				message : "welcome",
-				messageType:"something"
-			}
-		/* var formData="message=myname&messageType=test"; */
 		
 		var url = "http://localhost:8080/api/insertTasks";
 
@@ -66,12 +61,13 @@ $(document).ready(function() {
 				type : "POST",
 				url : url,
 				data : JSON.stringify({
-					"message" : "welcome",
-					"messageType":"something"
+					"message" : message,
+					"messageType": messageType
 				  }),
-				dataType:"json",
+				
 				success : function(data) {
 					alert("successfully updated");
+					
 				}
 			});
 
@@ -105,10 +101,10 @@ $(document).ready(function() {
 					<li ><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
 							<p>Teachers</p>
 					</a></li>
-					<li class="active"> <a href="subject-view.jsp"> <i class="pe-7s-news-paper"></i>
+					<li > <a href="../subject/subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li ><a href="feedback.jsp"> <i
+					<li class="active"><a href="notification-insert.jsp"> <i
 							class="pe-7s-science"></i>
 							<p>Notification</p>
 					</a></li>
@@ -137,7 +133,7 @@ $(document).ready(function() {
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Teacher</a>
+						<a class="navbar-brand" href="#">Notification</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -160,7 +156,7 @@ $(document).ready(function() {
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <li><a href=""> Account </a></li> -->
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> Suject <b class="caret"></b>
+								data-toggle="dropdown"> Notification <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
 									<li><a 
@@ -182,12 +178,12 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Subject Insert</h4>
-									<p class="category">Insert Subject details</p>
+									<h4 class="title">Notification Insert</h4>
+									<p class="category">Insert Notification details</p>
 								</div>
 
 								<form action="" method="POST"
-									id="form1" onsubmit="return doSubmit()">
+									id="form1" onsubmit="">
 									<span style="padding: 10 10 10 10">
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
@@ -201,7 +197,7 @@ $(document).ready(function() {
 										<div class="row" style="padding: 10 10 10 10">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>message</label>
+													<label>Message</label>
 													<textarea rows="5" class="form-control"
 														placeholder="Message" id="message"
 														name="message" required></textarea>

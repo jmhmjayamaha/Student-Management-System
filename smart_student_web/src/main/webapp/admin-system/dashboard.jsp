@@ -110,7 +110,7 @@
 					<li><a href="subject/subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li ><a href="feedback.jsp"> <i
+					<li ><a href="notifications/notification-insert.jsp"> <i
 							class="pe-7s-science"></i>
 							<p>Notification</p>
 					</a></li>
@@ -235,7 +235,7 @@
 					<nav class="pull-left">
 						<ul>
 							<li><a href="#"> Home </a></li>
-							<li><a href="#"> Company </a></li>
+							<li><a href="#"> SEUSL </a></li>
 							<li><a href="#"> Portfolio </a></li>
 							<li><a href="#"> Blog </a></li>
 						</ul>

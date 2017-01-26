@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%
 	if (session.getAttribute("name") == null) {
-		response.sendRedirect("admin-login.html");
+		response.sendRedirect("../admin-login.html");
 	}
 	out.print("<input type='hidden' value='" + session.getAttribute("name") + "' id='hide'/>");
 %>
@@ -105,7 +105,7 @@
 			<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="http://www.creative-tim.com" class="simple-text">
-						STUDENT'S SITE </a>
+						ADMIN SITE </a>
 				</div>
 
 				<ul class="nav">
@@ -122,7 +122,7 @@
 					<li class="active"><a href="subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li><a href="feedback.jsp"> <i class="pe-7s-science"></i>
+					<li><a href="../notifications/notification-insert.jsp"> <i class="pe-7s-science"></i>
 							<p>Notifications</p>
 					</a></li>
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
