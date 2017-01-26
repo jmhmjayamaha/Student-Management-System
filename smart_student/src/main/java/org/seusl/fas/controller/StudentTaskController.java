@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.seusl.fas.model.StudentTask;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +46,7 @@ public class StudentTaskController {
 		return tasks;
 	}
 	
-	@RequestMapping(value="/insertSubject" , method=RequestMethod.POST)
+	@RequestMapping(value="/insertTasks" , method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public void insertSubject(@RequestBody StudentTask task) {
 		task.setMessage(task.getMessage());

@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%
 	if (session.getAttribute("name") == null) {
-		response.sendRedirect("admin-login.html");
+		response.sendRedirect("../admin-login.html");
 	}
 	out.print("<input type='hidden' value='" + session.getAttribute("name") + "' id='hide'/>");
 %>
@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Student information details</title>
+<title>Administration login page</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -42,55 +42,42 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
 	rel='stylesheet' type='text/css'>
 <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-<script>
-	var app = angular.module("myApp", []);
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
 
-	app.controller('subjectController', function($scope, $http) {
-		$http.get('http://localhost:8080/api/subject-list').then(
-				function(response) {
-					$scope.subjects = response.data;
-				});
-	});
-	
-/*  app.controller('deleteController', function($scope, $http) {
-	 $scope.deleteSubject= function(){	
-	 	var val = document.getElementById("#delete").value;
-		 $http({
-			  method: 'GET',
-			  url: "http://localhost:8080/api/subject-delete?subjectId="+val,
-			}).then(function successCallback(response) {
-			    alert("success")
-			  }, function errorCallback(response) {
-			    alert("something went wrong")
-			  });
- }
-	}); */ 
-	
-	$(document).ready(function() {
-		$("#delete").click(function(e) {
-			var val = $('#delete').val();
+$(document).ready(function() {
+	$("#form1").submit(function(e) {
+		var messageType = $("#mesType").val();
+		var message = $("#message").val();
+		var formData = {
+				message : "welcome",
+				messageType:"something"
+			}
+		/* var formData="message=myname&messageType=test"; */
 		
-			var url = "http://localhost:8080/api/subject-delete?subjectId="+val;
-			
-			$
-				.ajax({
-					type : "GET",
-					url : url,
+		var url = "http://localhost:8080/api/insertTasks";
 
-					success : function(data) {
-						alert("successfully deleted");
-					}
-				});
+		$
+			.ajax({
+				headers: { 
+			        'Accept': 'application/json',
+			        'Content-Type': 'application/json' 
+			    },
+				type : "POST",
+				url : url,
+				data : JSON.stringify({
+					"message" : "welcome",
+					"messageType":"something"
+				  }),
+				dataType:"json",
+				success : function(data) {
+					alert("successfully updated");
+				}
+			});
 
-			e.preventDefault();
-		});
-	});  
-	
-	
-	
+		e.preventDefault();
+	});
+}); 
 </script>
 </head>
 <body>
@@ -104,32 +91,32 @@
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						STUDENT'S SITE </a>
+					<a href="" class="simple-text">
+						Admin'S SITE </a>
 				</div>
 
 				<ul class="nav">
-					<li><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
+					<li ><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Dashboard</p>
 					</a></li>
 					<li ><a href="../student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
 					</a></li>
-					<li ><a href="../teacher.jsp"> <i
-							class="pe-7s-note2"></i>
-							<p>Teacher</p>
+					<li ><a href="../teacher.jsp"> <i class="pe-7s-note2"></i>
+							<p>Teachers</p>
 					</a></li>
-					<li class="active"><a href="subject-view.jsp"> <i class="pe-7s-news-paper"></i>
+					<li class="active"> <a href="subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li><a href="feedback.jsp"> <i class="pe-7s-science"></i>
-							<p>Notifications</p>
+					<li ><a href="feedback.jsp"> <i
+							class="pe-7s-science"></i>
+							<p>Notification</p>
 					</a></li>
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
 					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
-							<p>Notifications</p>
+							<p>Approval</p>
 					</a></li>
 					<li class="active-pro"><a
 						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
@@ -150,7 +137,7 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Subject</a>
+						<a class="navbar-brand" href="#">Teacher</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -171,16 +158,16 @@
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<<!-- li><a href=""> Account </a></li> -->
+							<!-- <li><a href=""> Account </a></li> -->
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> Subject <b class="caret"></b>
+								data-toggle="dropdown"> Suject <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
 									<li><a 
 										href="subject-view.jsp">View</a></li>
 									<li><a href="subject-insert.jsp">Insert</a></li>
-									<li><a href="subject-update.jsp">Update</a></li>
-									<li><a href="subject-delete.jsp">Delete</a></li>									
+									<!-- <li><a href="teacher-update.jsp">Update</a></li>
+									<li><a href="teacher-delete.jsp">Delete</a></li> -->									
 								</ul></li>
 							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>
@@ -195,39 +182,56 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Subject</h4>
-									<p class="category">All Subject details of the SEUSL FAS</p>
+									<h4 class="title">Subject Insert</h4>
+									<p class="category">Insert Subject details</p>
 								</div>
-								<div class="content table-responsive table-full-width"
-									ng-controller="subjectController">
-									<table class="table table-hover table-striped">
-										<thead>
-											<th>Select</th>
-											<th>Subject ID</th>
-											<th>Subject Name</th>
-											<th>Responsible Teacher</th>
-											<th>Action</th>
-										</thead>
-										<tbody>
-											<tr ng-repeat="s in subjects">
-												<td><label class="checkbox"> <input
-														type="checkbox" value="{{ s.id }}" data-toggle="checkbox"
-														id="cehckbox">
-												</label></td>
-												<td id="deleteId">{{ s.id }}</td>
-												<td>{{ s.name }}</td>
-												<td>{{ s.teacherId }}</td>
-												<td ><button type="button" rel="tooltip" title="Remove"
-														id="delete" value="{{ s.id }}"
-														class="btn btn-danger btn-simple btn-xs" ">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+
+								<form action="" method="POST"
+									id="form1" onsubmit="return doSubmit()">
+									<span style="padding: 10 10 10 10">
+										<div class="row" style="padding: 10 10 10 10">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>MessageType</label> <input type="text"
+														class="form-control" placeholder="Message Type" id="msgType"
+														name="msgType" required>
+												</div>
+											</div>
+										</div>										
+										<div class="row" style="padding: 10 10 10 10">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>message</label>
+													<textarea rows="5" class="form-control"
+														placeholder="Message" id="message"
+														name="message" required></textarea>
+												</div>
+											</div>
+										</div> 
+										
+										<!-- <div class="row" style="padding: 10 10 10 10">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>message</label>
+													<textarea rows="5" class="form-control"
+														placeholder="Here can be your description" id="message"
+														name="message" required></textarea>
+												</div>
+											</div>
+										</div> --> <input type="submit" class="btn btn-info btn-fill pull-right"
+										style="padding: 10 10 10 10" value="Insert">
+										<div class="clearfix"></div>
+									</span>
+								</form>
 							</div>
 						</div>
+
+
+						<div class="col-md-12">
+							<div class="card card-plain"></div>
+						</div>
+
+
 					</div>
 				</div>
 			</div>
