@@ -10,14 +10,21 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+import org.seusl.configuration.project.PropertyConfiguration;
+
 public class EmailConfigurationImpl implements EmailConfiguration {
 
+	private Logger log = Logger.getLogger(EmailConfigurationImpl.class);
+	
 	public void sendEmail(String to, String subject) {
 		final Mailer mailer = new Mailer();
 		EmailTemplateCreation template = new EmailTemplateCreation();
-		mailer.setFrom("abc@gmail.com");
-		mailer.setUsername("abc@gmail.com");
-		mailer.setPassword("");
+		PropertyConfiguration instance = new PropertyConfiguration();
+		
+		mailer.setFrom(instance.getEmail());
+		mailer.setUsername(instance.getEmailUsername());
+		mailer.setPassword(instance.getEmailPassword());
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -25,13 +32,13 @@ public class EmailConfigurationImpl implements EmailConfiguration {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "25");
 
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(mailer.getUsername(), mailer.getPassword());
-			}
-		});
-
 		try {
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(mailer.getUsername(), mailer.getPassword());
+				}
+			});
+			
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(mailer.getFrom()));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
@@ -40,7 +47,7 @@ public class EmailConfigurationImpl implements EmailConfiguration {
 			Transport.send(message);
 
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			log.error(e.getMessage());
 		}
 	}
 
