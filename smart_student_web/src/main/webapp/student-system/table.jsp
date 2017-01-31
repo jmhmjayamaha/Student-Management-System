@@ -100,8 +100,8 @@ app.controller('notificationController', function($scope, $http) {
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
-					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
-							<p>Notifications</p>
+					<li><a href="registration.jsp"> <i class="pe-7s-bell"></i>
+							<p>Registration</p>
 					</a></li>
 					<li class="active-pro"><a href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1"> <i
 							class="pe-7s-rocket"></i>

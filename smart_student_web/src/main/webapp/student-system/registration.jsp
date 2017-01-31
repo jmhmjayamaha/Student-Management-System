@@ -42,6 +42,13 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+<!-- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+ -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script>
@@ -88,7 +95,7 @@
 					<li><a href="table.jsp"> <i class="pe-7s-note2"></i>
 							<p>Table List</p>
 					</a></li>
-					<li class="active"><a href="result.jsp"> <i
+					<li ><a href="result.jsp"> <i
 							class="pe-7s-news-paper"></i>
 							<p>My Result</p>
 					</a></li>
@@ -98,7 +105,7 @@
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
-					<li><a href="registration.jsp"> <i class="pe-7s-bell"></i>
+					<li class="active"><a href="registration.jsp"> <i class="pe-7s-bell"></i>
 							<p>Registration</p>
 					</a></li>
 					<li class="active-pro"><a href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1"> <i
@@ -119,7 +126,7 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Table List</a>
+						<a class="navbar-brand" href="#">Registration</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -166,25 +173,39 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Results Table</h4>
-									<p class="category">Here is a academic results</p>
+									<h4 class="title">Examination</h4>
+									<p class="category">Apply for the examinations</p>
 								</div>
-								<div class="content table-responsive table-full-width"
-									ng-controller="resultController">
+								<div class="content table-responsive table-full-width">
 									<table class="table table-hover table-striped">
 										<thead>
-											<th>Subject Id</th>
-											<th>Result</th>
+											<th>Year</th>
+											<th>Semester</th>
+											<th>Apply</th>
 										</thead>
 										<tbody>
-											<tr ng-repeat="r in results">
-												<td>{{ r.subjectName }}</td>
-												<td>{{ r.result }}</td>
+											<tr>
+												<td>
+													<select class="" id="selYear">
+													  <option>Year 1</option>
+													  <option>Year 2</option>
+													  <option>Year 3</option>
+													  <option>Year 4</option>
+													</select>
+													
+												</td>
+												<td><select class="" id="selSemester">
+													  <option>Semester 1</option>
+													  <option>Semester 2</option>
+													</select></td>
+												<td>
+													<button type="button" class="btn btn-info" id="apply">Apply</button>	
+												</td>
 											</tr>
 										</tbody>
 									</table>
 
-								</div>
+								</div> 
 							</div>
 						</div>
 

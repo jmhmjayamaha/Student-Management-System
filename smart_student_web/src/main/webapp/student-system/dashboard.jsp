@@ -113,9 +113,9 @@ app.controller('tasksController', function($scope, $http) {
                     </a>
                 </li> -->
                 <li>
-                    <a href="notifications.jsp">
+                    <a href="registration.jsp">
                         <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
+                        <p>Registration</p>
                     </a>
                 </li>
 				<li class="active-pro">
