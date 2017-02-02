@@ -144,7 +144,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('SEU/IS/10/PS/046','rasika lakruwan','kotiyakubura, Warakapola','0111234567','abcd@gmail.com','pass out'),('SEU/IS/10/PS/050','Mohemad Afreth','Sainthamaruthu, Kalmunei','0751234567','afreth@gmail.com','pass out'),('SEU/IS/10/PS/104','Harshana Madusanka Jayamaha','Kohombedeiya , dorawaka','0774231747','jmhmjayamaha@gmail.com','Pass out '),('SEU/IS/11/PS/100','Kawshalya Madushani','Ambepussa , Warakapola','0771234567','abc@gmail.com','fourth Year');
+INSERT INTO `student` VALUES ('SEU/IS/10/PS/046','rasika lakruwan','kotiyakubura, Warakapola','0111234567','abcd@gmail.com','pass out'),('SEU/IS/10/PS/050','Mohemad Afreth','Sainthamaruthu, Kalmunei','0751234567','afreth@gmail.com','pass out'),('SEU/IS/10/PS/101','Dulari Ranaweera','Ampara','123456789','abc@gmail.om','3 year'),('SEU/IS/10/PS/104','Harshana Madusanka Jayamaha','Kohombedeiya , dorawaka','0774231747','jmhmjayamaha@gmail.com','Pass out '),('SEU/IS/11/PS/100','Kawshalya Madushani','Ambepussa , Warakapola','0771234567','abc@gmail.com','fourth Year');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +161,7 @@ CREATE TABLE `student_feedback` (
   `feedback` varchar(255) DEFAULT NULL,
   `time` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `student_feedback` (
 
 LOCK TABLES `student_feedback` WRITE;
 /*!40000 ALTER TABLE `student_feedback` DISABLE KEYS */;
-INSERT INTO `student_feedback` VALUES (1,'About Library','need more books and space','Sat Jan 21 20:27:41 IST 2017'),(2,'About Admin','start admin works on time','Sat Jan 21 20:28:18 IST 2017'),(3,'need assistence for the registration','I\'m harshana mad ushanka , I need to submit my registration form','Sat Jan 21 20:36:27 IST 2017'),(4,'about examintaion','can i know the start date of the exam','Sat Jan 21 20:55:35 IST 2017');
+INSERT INTO `student_feedback` VALUES (1,'About Library','need more books and space','Sat Jan 21 20:27:41 IST 2017'),(2,'About Admin','start admin works on time','Sat Jan 21 20:28:18 IST 2017'),(3,'need assistence for the registration','I\'m harshana mad ushanka , I need to submit my registration form','Sat Jan 21 20:36:27 IST 2017'),(4,'about examintaion','can i know the start date of the exam','Sat Jan 21 20:55:35 IST 2017'),(5,'about admin','change the location of the admin','Thu Feb 02 10:42:46 IST 2017');
 /*!40000 ALTER TABLE `student_feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,11 +235,11 @@ DROP TABLE IF EXISTS `student_tasks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student_tasks` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` varchar(255) DEFAULT NULL,
   `messageType` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +248,7 @@ CREATE TABLE `student_tasks` (
 
 LOCK TABLES `student_tasks` WRITE;
 /*!40000 ALTER TABLE `student_tasks` DISABLE KEYS */;
-INSERT INTO `student_tasks` VALUES (1,'You should have 80% of attendance to sit for the exam.','new'),(2,'participate for the Career Development program','new'),(3,'Annual Research session','old'),(4,'Final Semester examiniation in february','new');
+INSERT INTO `student_tasks` VALUES (1,'You should have 80% of attendance to sit for the exam.','new'),(2,'participate for the Career Development program','new'),(3,'Annual Research session','old'),(4,'Final Semester examiniation in february','new'),(5,NULL,NULL),(6,NULL,NULL),(7,'welcome','something'),(8,'welcome','something'),(9,'welcome','something'),(10,'welcome','something'),(11,'welcome','something'),(12,'nothing is possible without me',NULL),(13,'message','messagetype'),(14,'how are u ','important '),(15,'12323123','important '),(16,'Welcome to new batch','new'),(17,'Students have to collect their cloak on 4th of february 2017','new'),(18,'nothing to do','new');
 /*!40000 ALTER TABLE `student_tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES ('CSM21022','Data structure and algorithm in java','SEU/FAS/052'),('CSM31033','Operating system and system programming','SEU/FAS/052'),('CSM32033','Cryptography','SEU/FAS/052'),('CSM42033','Advanced Database management system','SEU/FAS/023');
+INSERT INTO `subject` VALUES ('CSM21022','Data structure and algorithm in java','SEU/FAS/023'),('CSM31033','Operating system and system programming','SEU/FAS/052'),('CSM32033','Cryptography','SEU/FAS/052'),('CSM42033','Advanced Database management system','SEU/FAS/023');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,4 +316,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-24  8:24:35
+-- Dump completed on 2017-02-02 18:02:01
