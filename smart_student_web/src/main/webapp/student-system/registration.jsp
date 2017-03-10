@@ -42,7 +42,8 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
+<link href="assets/css/popup.css" rel="stylesheet"/>
+<link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/jquery/login-box-modal-dialog-window/index.html" />
 <!-- 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
@@ -51,16 +52,20 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	
 <script>
 	var test = document.getElementById("hide").value;
 
 	var app = angular.module("myApp", []);
 
-	app.controller('resultController', function($scope, $http) {
-		$http.get("http://localhost:8080/api/result-search?id=" + test).then(
+	app.controller('studentController', function($scope, $http) {
+		//$scope.GetAllData = function() {
+		$http.get("http://localhost:8080/api/student-search?stuId="+ test +"&name=&telNo=&email=&acedemicYear=").then(
 				function(response) {
-					$scope.results = response.data;
+					$scope.student = response.data;
 				});
+		//}
 	});
 	app.controller('notificationController', function($scope, $http) {
 		$http.get("http://localhost:8080/api/notification-list").then(
@@ -165,8 +170,6 @@
 					</div>
 				</div>
 			</nav>
-
-
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
@@ -192,14 +195,13 @@
 													  <option>Year 3</option>
 													  <option>Year 4</option>
 													</select>
-													
 												</td>
 												<td><select class="" id="selSemester">
 													  <option>Semester 1</option>
 													  <option>Semester 2</option>
 													</select></td>
 												<td>
-													<button type="button" class="btn btn-info" id="apply">Apply</button>	
+													<button type="button" class="btn btn-info" id="apply"><a href="#login-box" class="login-window m5">Apply</a></button>	
 												</td>
 											</tr>
 										</tbody>
@@ -208,13 +210,9 @@
 								</div> 
 							</div>
 						</div>
-
-
 						<div class="col-md-12">
 							<div class="card card-plain"></div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -234,12 +232,74 @@
 					</p>
 				</div>
 			</footer>
-
-
 		</div>
 	</div>
+	<!-- popup window -->
+	<div id="login-box" class="login-popup">
+		<a href="#" class="close"><img src="../close_pop.png"
+			class="btn_close" title="Close Window" alt="Close" /></a>
+		<form method="post" class="signin" action="studentLogin">
+			<fieldset class="textbox">
+				<div ng-controller="studentController">
+				<label class="username" > <span >Name</span> <input
+					id="username" name="username" value="{{student[0].name}}" type="text"
+					autocomplete="on" placeholder="Username"></div>
+				</label> <label class="username"> <span>Reg No</span> <input
+					id="regNo" name="regNo" value="" type="text" placeholder="Reg No">
+				</label> <label class="username"> <span>Year</span> <input id="year"
+					name="year" value="" type="text" placeholder="Year">
+				</label> <label class="username"> <span>Semester</span> <input
+					id="sem" name="sem" value="" type="text" placeholder="Semester">
+				</label> <input type="submit" class="submit button" value="Sign in">
+			</fieldset>
+		</form>
+	</div>
+	<!-- <script type="text/javascript">
+		Cufon.now();
+	</script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('a.login-window').click(function() {
+		
+		var regNo = document.getElementById("hide").value;
+		var year = document.getElementById("selYear").value;
+		var sem = document.getElementById("selSemester").value;
+		
+		document.getElementById("year").value=year;
+		document.getElementById("sem").value=sem;
+		document.getElementById("regNo").value=regNo;
+		// Getting the variable's value from a link 
+		var loginBox = $(this).attr('href');
 
-
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+		
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+		
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+	
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
+});
+</script>
+<script type="text/javascript"> Cufon.now(); </script>
 </body>
 
 <!--   Core JS Files   -->
@@ -255,15 +315,14 @@
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!--  Google Maps Plugin    
+<!-- <script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js"></script>
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
-
 
 </html>
