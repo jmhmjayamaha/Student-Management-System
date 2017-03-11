@@ -73,6 +73,56 @@
 					$scope.notification = response.data;
 				});
 	});
+	
+	app.controller('examController', function($scope, $http) {
+		$http.get("http://localhost:8080/info/registrations?stuId=" + test).then(
+				function(response) {
+					$scope.exams = response.data;
+				});
+	});
+	
+</script>
+
+<script>
+$(document).ready(function() {
+	$("#registerForm").submit(function(e) {
+		var username = $("#username").val();
+		var regNo = $("#regNo").val();
+		var year = $("#year").val();
+		var sem = $("#sem").val();
+		
+		var url = "http://localhost:8080/info/saveRegistration";
+
+		$
+			.ajax({
+				headers: { 
+			        'Accept': 'application/json',
+			        'Content-Type': 'application/json' 
+			    },
+				type : "POST",
+				url : url,
+				data : JSON.stringify({
+					"name" : username,
+					"regNo": regNo,
+					"year" : year,
+					"semester" : sem
+				  }),
+				
+				success : function(data) {
+					alert("successfully Saved");
+					location.reload();
+				}
+			});
+
+		e.preventDefault();
+		
+	});
+	
+	$("#close").click(function(e) {
+		/* location.reload(); */
+		$('#mask , .login-popup').fadeOut(300);
+	});
+});
 </script>
 </head>
 <body>
@@ -210,6 +260,38 @@
 								</div> 
 							</div>
 						</div>
+						
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Examination Table</h4>
+									<p class="category">Here is your examination details</p>
+								</div>
+								<div class="content table-responsive table-full-width" ng-controller="examController" >
+									<table class="table table-hover table-striped">
+										<thead>
+											<th>ID</th>
+											<th>Name</th>
+											<th>RegNo</th>
+											<th>Year</th>
+											<th>Semester</th>
+											<th>Status</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="e in exams">
+												<td>{{ e.id }}</td>
+												<td>{{ e.name }}</td>
+												<td>{{ e.regNo }}</td>
+												<td>{{ e.year }}</td>
+												<td>{{ e.semester }}</td>
+												<td>{{ e.status }}</td>
+											</tr>									
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
 						<div class="col-md-12">
 							<div class="card card-plain"></div>
 						</div>
@@ -221,7 +303,7 @@
 				<div class="container-fluid">
 					<nav class="pull-left">
 						<ul>
-							<li><a href="#"> Home </a></li>
+							<li><a href="../"> Home </a></li>
 							<li><a href="#"> Company </a></li>
 							<li><a href="#"> Portfolio </a></li>
 							<li><a href="#"> Blog </a></li>
@@ -237,15 +319,15 @@
 	<!-- popup window -->
 	<div id="login-box" class="login-popup">
 		<a href="#" class="close"><img src="../close_pop.png"
-			class="btn_close" title="Close Window" alt="Close" /></a>
-		<form method="post" class="signin" action="studentLogin">
+			class="btn_close" title="Close Window" alt="Close" id="close"/></a>
+		<form method="post" class="signin" action="" id="registerForm">		
 			<fieldset class="textbox">
 				<div ng-controller="studentController">
 				<label class="username" > <span >Name</span> <input
-					id="username" name="username" value="{{student[0].name}}" type="text"
+					id="username" name="username" value="{{student[0].name}}" type="text" disabled
 					autocomplete="on" placeholder="Username"></div>
 				</label> <label class="username"> <span>Reg No</span> <input
-					id="regNo" name="regNo" value="" type="text" placeholder="Reg No">
+					id="regNo" name="regNo" value="" type="text" placeholder="Reg No" disabled>
 				</label> <label class="username"> <span>Year</span> <input id="year"
 					name="year" value="" type="text" placeholder="Year">
 				</label> <label class="username"> <span>Semester</span> <input
@@ -299,7 +381,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-<script type="text/javascript"> Cufon.now(); </script>
 </body>
 
 <!--   Core JS Files   -->
