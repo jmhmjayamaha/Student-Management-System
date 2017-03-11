@@ -31,5 +31,6 @@
 		<mapping class="org.seusl.fas.model.Result" />
 		<mapping class="org.seusl.fas.model.StudentTask" />
 		<mapping class="org.seusl.fas.model.StudentFeedback" />
+		<mapping class="org.seusl.fas.model.ExamRegister" />
 	</session-factory>
 </hibernate-configuration>
