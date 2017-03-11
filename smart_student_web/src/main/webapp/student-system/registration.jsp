@@ -250,7 +250,7 @@
 					name="year" value="" type="text" placeholder="Year">
 				</label> <label class="username"> <span>Semester</span> <input
 					id="sem" name="sem" value="" type="text" placeholder="Semester">
-				</label> <input type="submit" class="submit button" value="Sign in">
+				</label> <input type="submit" class="submit button" value="Register">
 			</fieldset>
 		</form>
 	</div>
