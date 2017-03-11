@@ -21,6 +21,7 @@ public class ExamRegister implements Serializable {
 	
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "name")
 	private String name;
