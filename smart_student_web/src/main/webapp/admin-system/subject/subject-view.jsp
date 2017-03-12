@@ -53,6 +53,16 @@
 				function(response) {
 					$scope.subjects = response.data;
 				});
+		
+		$scope.deletefun = function(id) {
+			var val = id;
+			$http.get("http://localhost:8080/api/subject-delete?subjectId="+val).then(function() {
+				alert("successfully deleted")
+				location.reload();
+			}, function(){
+				alert("Something went wrong")}
+			);
+		}
 	});
 	
 /*  app.controller('deleteController', function($scope, $http) {
@@ -69,7 +79,7 @@
  }
 	}); */ 
 	
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		$("#delete").click(function(e) {
 			var val = $('#delete').val();
 		
@@ -88,7 +98,7 @@
 			e.preventDefault();
 		});
 	});  
-	
+ */	
 	
 	
 </script>
@@ -218,8 +228,8 @@
 												<td>{{ s.name }}</td>
 												<td>{{ s.teacherId }}</td>
 												<td ><button type="button" rel="tooltip" title="Remove"
-														id="delete" value="{{ s.id }}"
-														class="btn btn-danger btn-simple btn-xs" ">
+														id="delete" data="{{ s.id }}"
+														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(s.id)">
 														<i class="fa fa-times"></i>
 													</button></td>
 											</tr>
@@ -268,9 +278,9 @@
 <!--  Notifications Plugin    -->
 <script src="../assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
+<!--  Google Maps Plugin    --><!-- 
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="../assets/js/light-bootstrap-dashboard.js"></script>
