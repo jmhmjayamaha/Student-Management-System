@@ -55,7 +55,7 @@ $(document).ready(function() {
 		var year = document.getElementById("acedemicYear").value;
 		
 
-		var url = "http://localhost:8080/api/student-save?stuId="+ id +"&name="+ name +"&address="+address+"&telNo="+telNo+"&email="+email+"&acedemicYear="+year;
+		var url = "http://localhost:8080/api/student-update?stuId="+ id +"&name="+ name +"&address="+address+"&telNo="+telNo+"&email="+email+"&acedemicYear="+year;
 
 		$
 			.ajax({
@@ -165,7 +165,7 @@ $(document).ready(function() {
 										href="../student.jsp">View</a></li>
 									<li><a href="student-insert.jsp">Insert</a></li>
 									<li><a href="student-update.jsp">Update</a></li>
-									<li><a href="student-delete.jsp">Delete</a></li>									
+									<!-- <li><a href="student-delete.jsp">Delete</a></li> -->									
 								</ul></li>
 							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>

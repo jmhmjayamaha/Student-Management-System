@@ -165,7 +165,7 @@ $(document).ready(function() {
 										href="../student.jsp">View</a></li>
 									<li><a href="student-insert.jsp">Insert</a></li>
 									<li><a href="student-update.jsp">Update</a></li>
-									<li><a href="student-delete.jsp">Delete</a></li>									
+									<!-- <li><a href="student-delete.jsp">Delete</a></li>	 -->								
 								</ul></li>
 							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>

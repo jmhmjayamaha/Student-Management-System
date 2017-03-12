@@ -56,7 +56,17 @@
 				});
 		$scope.accept = function(id) {
 			var x = id;
-			$http.put("http://localhost:8080/info/updateRegistration?id="+x, {});
+			$http.put("http://localhost:8080/info/updateRegistration?id="+x, {}).then(
+				function() {
+					var con = confirm("Accepted , Do you want to reload the page?");
+					if(con == true) {
+						location.reload();
+					}
+				}, 
+				function() {
+					alert("something went wrong")
+				}
+			);
 		}
 	});
 </script>

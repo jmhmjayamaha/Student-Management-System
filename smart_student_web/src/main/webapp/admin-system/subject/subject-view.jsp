@@ -190,7 +190,7 @@
 										href="subject-view.jsp">View</a></li>
 									<li><a href="subject-insert.jsp">Insert</a></li>
 									<li><a href="subject-update.jsp">Update</a></li>
-									<li><a href="subject-delete.jsp">Delete</a></li>									
+									<!-- <li><a href="subject-delete.jsp">Delete</a></li> -->									
 								</ul></li>
 							<li><a href="../logout.jsp"> Log out </a></li>
 						</ul>
