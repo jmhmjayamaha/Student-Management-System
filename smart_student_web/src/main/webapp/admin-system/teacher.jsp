@@ -52,6 +52,18 @@
 				function(response) {
 					$scope.teacher = response.data;
 				});
+		
+		$scope.deletefun = function(id) {
+			var x = id;
+			$http.get("http://localhost:8080/api/teacher-delete?teacherId="+id).then(
+				function() {
+					alert("successfully deleted");
+					location.reload();
+				}, function() {
+					alert("something went wrong");
+				}		
+			);
+		}
 	});
 </script>
 </head>
@@ -170,6 +182,7 @@
 											<th>Tel NO</th>
 											<th>Email</th>
 											<th>Qualification</th>
+											<th>Action</th>
 										</thead>
 										<tbody>
 											<tr ng-repeat="t in teacher">
@@ -179,6 +192,11 @@
 												<td>{{ t.telNo }}</td>
 												<td>{{ t.email }}</td>
 												<td>{{ t.qualification }}</td>
+												<td ><button type="button" rel="tooltip" title="Remove"
+														id="delete" data="{{ t.id }}"
+														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(t.id)">
+														<i class="fa fa-times"></i>
+													</button></td>
 											</tr>
 										</tbody>
 									</table>
