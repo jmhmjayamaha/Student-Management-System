@@ -52,6 +52,18 @@
 				function(response) {
 					$scope.students = response.data;
 				});
+		$scope.deletefun = function(id){
+			var x = id;
+			$http.get("http://localhost:8080/api/student-delete?stuId=" + x).then(
+				function() {
+					alert("successfully deleted")
+					location.reload();
+				},
+				function() {
+					alert("something went wrong");
+				}
+			);
+		}
 	});
 </script>
 </head>
@@ -170,6 +182,7 @@
 											<th>Tel NO</th>
 											<th>Email</th>
 											<th>Acdemic Year</th>
+											<th>Action</th>
 										</thead>
 										<tbody>
 											<tr ng-repeat="s in students">
@@ -179,6 +192,11 @@
 												<td>{{ s.telNo }}</td>
 												<td>{{ s.email }}</td>
 												<td>{{ s.acedemicYear }}</td>
+												<td ><button type="button" rel="tooltip" title="Remove"
+														id="delete" data="{{ s.id }}"
+														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(s.id)">
+														<i class="fa fa-times"></i>
+													</button></td>
 											</tr>
 										</tbody>
 									</table>
