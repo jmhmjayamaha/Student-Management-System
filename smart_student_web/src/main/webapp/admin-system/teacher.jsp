@@ -142,7 +142,7 @@
 										href="teacher.jsp">View</a></li>
 									<li><a href="teacher/teacher-insert.jsp">Insert</a></li>
 									<li><a href="teacher/teacher-update.jsp">Update</a></li>
-									<li><a href="teacher/teacher-delete.jsp">Delete</a></li>									
+									<!-- <li><a href="teacher/teacher-delete.jsp">Delete</a></li> -->									
 								</ul></li>
 							<li><a href="logout.jsp"> Log out </a></li>
 						</ul>
@@ -257,8 +257,8 @@
 <script src="assets/js/bootstrap-notify.js"></script>
 
 <!--  Google Maps Plugin    -->
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!-- <script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js"></script>
