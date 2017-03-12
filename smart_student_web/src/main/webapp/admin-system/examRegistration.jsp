@@ -44,11 +44,20 @@
 <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	
 <script>
 	var app = angular.module("myApp", []);
-
-	app.controller('studentController', function($scope, $http) {
-		$http.put("http://localhost:8080/info/updateRegistration?id=5", {});
+	
+	app.controller('examController', function($scope, $http) {
+		$http.get('http://localhost:8080/info/allRegistrations').then(
+				function(response) {
+					$scope.exams = response.data;
+				});
+		$scope.accept = function(id) {
+			var x = id;
+			$http.put("http://localhost:8080/info/updateRegistration?id="+x, {});
+		}
 	});
 </script>
 </head>
@@ -71,7 +80,7 @@
 					<li><a href="dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Dashboard</p>
 					</a></li>
-					<li class="active"><a href="student.jsp"> <i class="pe-7s-user"></i>
+					<li><a href="student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
 					</a></li>
 					<li ><a href="teacher.jsp"> <i
@@ -87,8 +96,8 @@
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
-					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
-							<p>Notifications</p>
+					<li class="active"><a href="examRegistration.jsp"> <i class="pe-7s-bell"></i>
+							<p>Approval</p>
 					</a></li>
 					<li class="active-pro"><a
 						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
@@ -132,15 +141,15 @@
 						<ul class="nav navbar-nav navbar-right">
 							<<!-- li><a href=""> Account </a></li> -->
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> Student <b class="caret"></b>
+								data-toggle="dropdown"> Examination Registration <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
-									<li><a 
+									<!-- <li><a 
 										href="student.jsp">View</a></li>
 									<li><a href="student/student-insert.jsp">Insert</a></li>
 									<li><a href="student/student-update.jsp">Update</a></li>
 									<li><a href="student/student-delete.jsp">Delete</a></li>									
-								</ul></li>
+								 --></ul></li>
 							<li><a href="logout.jsp"> Log out </a></li>
 						</ul>
 					</div>
@@ -154,28 +163,30 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student</h4>
-									<p class="category">All Student of the SEUSL FAS</p>
+									<h4 class="title">Examination Registration</h4>
+									<p class="category">Examination Application</p>
 								</div>
 								<div class="content table-responsive table-full-width"
-									ng-controller="studentController">
+									ng-controller="examController">
 									<table class="table table-hover table-striped">
 										<thead>
 											<th>ID</th>
 											<th>Name</th>
-											<th>Address</th>
-											<th>Tel NO</th>
-											<th>Email</th>
-											<th>Acdemic Year</th>
+											<th>RegNo</th>
+											<th>Year</th>
+											<th>Semester</th>
+											<th>Status</th>
+											<th>Approval</th>
 										</thead>
 										<tbody>
-											<tr ng-repeat="s in students">
-												<td>{{ s.id }}</td>
-												<td>{{ s.name }}</td>
-												<td>{{ s.address }}</td>
-												<td>{{ s.telNo }}</td>
-												<td>{{ s.email }}</td>
-												<td>{{ s.acedemicYear }}</td>
+											<tr ng-repeat="e in exams">
+												<td>{{ e.id }}</td>
+												<td>{{ e.name }}</td>
+												<td>{{ e.regNo }}</td>
+												<td>{{ e.year }}</td>
+												<td>{{ e.semester }}</td>
+												<td>{{ e.status }}</td>
+												<td><button class="btn" ng-click="accept(e.id)" data="{{ e.id }}">Accept</button></td>
 											</tr>
 										</tbody>
 									</table>

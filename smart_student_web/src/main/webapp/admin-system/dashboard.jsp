@@ -117,7 +117,7 @@
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
-					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
+					<li><a href="examRegistration.jsp"> <i class="pe-7s-bell"></i>
 							<p>Approval</p>
 					</a></li>
 					<li class="active-pro"><a

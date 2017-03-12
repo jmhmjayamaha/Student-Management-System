@@ -113,8 +113,8 @@ $(document).ready(function() {
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
 					</a></li> -->
-					<li><a href="notifications.jsp"> <i class="pe-7s-bell"></i>
-							<p>Approvals</p>
+					<li><a href="../examRegistration.jsp"> <i class="pe-7s-bell"></i>
+							<p>Approval</p>
 					</a></li>
 					<li class="active-pro"><a
 						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
