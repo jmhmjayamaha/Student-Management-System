@@ -46,40 +46,33 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript">
-
-	$(document)
-			.ready(
+	var app = angular.module("myApp",[]);
+	
+	app.controller("feedbackController", function($scope, $http) {
+		$http.get("http://localhost:8080/api/feedback-list").then(
+				function(response) {
+					$scope.feedback = response.data;
+				}
+		);
+		
+		$scope.deletefun = function(id) {
+			var conf = confirm("do you want to delete this feedback");
+			
+			if(conf == true) {
+				$http.delete("http://localhost:8080/api/deleteFeedback/" + id).then(
 					function() {
-						$("#form1")
-								.submit(
-										function(e) {
-											var subject = document
-													.getElementById("subject").value;
-											var message = document
-													.getElementById("message").value;
-
-											var url = "http://localhost:8080/api/feedback?subject="
-													+ subject
-													+ "&message="
-													+ message;
-
-											$
-													.ajax({
-														type : "GET",
-														url : url,
-
-														success : function(data) {
-															alert("successfully updated");
-															document
-																	.getElementById("subject").value = "";
-															document
-																	.getElementById("message").value = "";
-														}
-													});
-
-											e.preventDefault();
-										});
-					}); 
+						var conf1 = confirm("successfully deleted, Do you need to reload the page?")
+						if(conf1 == true) {		
+							location.reload();
+						}
+						
+					}, function() {
+						alert("something went wrong");
+					}
+				);
+			}
+		}
+	});
 </script>
 </head>
 <body>
@@ -99,7 +92,7 @@
 
 				<ul class="nav">
 					<li class="active"><a href="dashboard.jsp"> <i class="pe-7s-graph"></i>
-							<p>Dashboard</p>
+							<p>Student Feedback</p>
 					</a></li>
 					<li><a href="student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
@@ -161,7 +154,7 @@
 
 						<ul class="nav navbar-nav navbar-right">
 							<!-- <li><a href=""> Account </a></li> -->
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> Dropdown <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
@@ -172,7 +165,7 @@
 									<li><a href="#">Something</a></li>
 									<li class="divider"></li>
 									<li><a href="#">Separated link</a></li>
-								</ul></li>
+								</ul> </li> -->
 							<li><a href="logout.jsp"> Log out </a></li>
 						</ul>
 					</div>
@@ -186,37 +179,34 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student Feedback</h4>
-									<p class="category">Please provide the your feedback</p>
+									<h4 class="title">Student</h4>
+									<p class="category">All Student of the SEUSL FAS</p>
 								</div>
+								<div class="content table-responsive table-full-width"
+									ng-controller="feedbackController">
+									<table class="table table-hover table-striped">
+										<thead>
+											<th>ID</th>
+											<th>Subject</th>
+											<th>Message</th>
+											<th>date</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="f in feedback">
+												<td>{{ f.id }}</td>
+												<td>{{ f.subject }}</td>
+												<td>{{ f.message }}</td>
+												<td>{{ f.date }}</td>
+												<td ><button type="button" rel="tooltip" title="Remove"
+														id="delete" data="{{ f.id }}"
+														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(f.id)">
+														<i class="fa fa-times"></i>
+													</button></td>
+											</tr>
+										</tbody>
+									</table>
 
-								<form action="http://localhost:8080/api/feedback" method="GET"
-									id="form1" onsubmit="return doSubmit()">
-									<span style="padding: 10 10 10 10">
-										<div class="row" style="padding: 10 10 10 10">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>Subject</label> <input type="text"
-														class="form-control" placeholder="subject" id="subject"
-														name="subject" required>
-												</div>
-											</div>
-										</div>
-
-										<div class="row" style="padding: 10 10 10 10">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label>message</label>
-													<textarea rows="5" class="form-control"
-														placeholder="Here can be your description" id="message"
-														name="message" required></textarea>
-												</div>
-											</div>
-										</div> <input type="submit" class="btn btn-info btn-fill pull-right"
-										style="padding: 10 10 10 10" value="Update Profile">
-										<div class="clearfix"></div>
-									</span>
-								</form>
+								</div>
 							</div>
 						</div>
 

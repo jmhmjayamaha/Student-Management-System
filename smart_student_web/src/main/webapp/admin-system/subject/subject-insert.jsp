@@ -88,7 +88,7 @@ $(document).ready(function() {
 
 				<ul class="nav">
 					<li ><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
-							<p>Dashboard</p>
+							<p>Student Feedback</p>
 					</a></li>
 					<li ><a href="../student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>

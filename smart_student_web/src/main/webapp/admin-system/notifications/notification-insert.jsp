@@ -93,7 +93,7 @@ $(document).ready(function() {
 
 				<ul class="nav">
 					<li ><a href="../dashboard.jsp"> <i class="pe-7s-graph"></i>
-							<p>Dashboard</p>
+							<p>Student Feedback</p>
 					</a></li>
 					<li ><a href="../student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
@@ -161,7 +161,7 @@ $(document).ready(function() {
 								<ul class="dropdown-menu">
 									<li><a 
 										href="subject-view.jsp">View</a></li>
-									<li><a href="subject-insert.jsp">Insert</a></li>
+									<li><a href="notification-insert.jsp">Insert</a></li>
 									<!-- <li><a href="teacher-update.jsp">Update</a></li>
 									<li><a href="teacher-delete.jsp">Delete</a></li> -->									
 								</ul></li>
