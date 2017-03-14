@@ -136,7 +136,7 @@ $(document).ready(function() {
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
+					<a href="" class="simple-text">
 						STUDENT'S SITE </a>
 				</div>
 

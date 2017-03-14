@@ -87,7 +87,7 @@
 			<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="http://www.creative-tim.com" class="simple-text">
-						Admin'S SITE </a>
+						Admin SITE </a>
 				</div>
 
 				<ul class="nav">
@@ -179,8 +179,8 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student</h4>
-									<p class="category">All Student of the SEUSL FAS</p>
+									<h4 class="title">Student Feedback</h4>
+									<p class="category">Feedback from student is listed here</p>
 								</div>
 								<div class="content table-responsive table-full-width"
 									ng-controller="feedbackController">
