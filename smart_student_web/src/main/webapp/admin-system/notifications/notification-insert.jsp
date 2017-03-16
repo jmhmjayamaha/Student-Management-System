@@ -114,6 +114,9 @@ $(document).ready(function() {
 					<li><a href="../examRegistration.jsp"> <i class="pe-7s-bell"></i>
 							<p>Approval</p>
 					</a></li>
+					<li><a href="../result-insert.jsp"> <i class="pe-7s-bell"></i>
+							<p>Results</p>
+					</a></li>
 					<li class="active-pro"><a
 						href="http://opac.lib.seu.ac.lk/cgi-bin/koha/opac-main.pl?logout.x=1">
 							<i class="pe-7s-rocket"></i>

@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" href="assets/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Administration login page</title>
+<title>Inserting results</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -42,37 +42,61 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+<link href="assets/css/popup.css" rel="stylesheet"/>
+<link rel="canonical" href="http://www.alessioatzeni.com/wp-content/tutorials/jquery/login-box-modal-dialog-window/index.html" />
+<!-- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+ -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script type="text/javascript">
-	var app = angular.module("myApp",[]);
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	
-	app.controller("feedbackController", function($scope, $http) {
-		$http.get("http://localhost:8080/api/feedback-list").then(
-				function(response) {
-					$scope.feedback = response.data;
-				}
+<script>
+	var app = angular.module("myApp", []);
+
+    app.controller('resultController' , function($scope , $http) {
+		$http.get("http://localhost:8080/api/getResults?id=10").then(
+			function(response) {
+				$scope.results = response.data;
+			}		
 		);
-		
-		$scope.deletefun = function(id) {
-			var conf = confirm("do you want to delete this feedback");
-			
-			if(conf == true) {
-				$http.delete("http://localhost:8080/api/deleteFeedback/" + id).then(
-					function() {
-						var conf1 = confirm("successfully deleted, Do you need to reload the page?")
-						if(conf1 == true) {		
-							location.reload();
-						}
-						
-					}, function() {
-						alert("something went wrong");
-					}
-				);
+		$http.get("http://localhost:8080/api/allStudentId").then(
+			function(response) {
+				$scope.student = response.data;
+			}		
+		);
+		$http.get("http://localhost:8080/api/allSubjectId").then(
+			function(response) {
+				$scope.subject = response.data;
+			}		
+		);
+		$scope.submit = function() {
+			if($scope.resultValue == null) {
+				$scope.resultValue = "ab"
 			}
+			
+			var dataObject = {
+				"stuId" : $scope.studentId,
+				"subjectName" : $scope.subjectId,
+				"result" : $scope.resultValue				
+			};
+			
+			$http.post("http://localhost:8080/api/saveResult",dataObject ).then(
+				function() {
+					alert("successfully added");
+					location.reload();
+				} , 
+				function() {
+					alert("something went wrong");
+				}
+				
+			);
 		}
-	});
+	}); 
+
 </script>
 </head>
 <body>
@@ -86,26 +110,26 @@
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						Admin SITE </a>
+					<a href="" class="simple-text">
+						ADMIN SITE </a>
 				</div>
 
 				<ul class="nav">
-					<li class="active"><a href="dashboard.jsp"> <i class="pe-7s-graph"></i>
+					<li><a href="dashboard.jsp"> <i class="pe-7s-graph"></i>
 							<p>Student Feedback</p>
 					</a></li>
 					<li><a href="student.jsp"> <i class="pe-7s-user"></i>
 							<p>Student</p>
 					</a></li>
-					<li><a href="teacher.jsp"> <i class="pe-7s-note2"></i>
+					<li ><a href="teacher.jsp"> <i
+							class="pe-7s-note2"></i>
 							<p>Teacher</p>
 					</a></li>
 					<li><a href="subject/subject-view.jsp"> <i class="pe-7s-news-paper"></i>
 							<p>Subject</p>
 					</a></li>
-					<li ><a href="notifications/notification-insert.jsp"> <i
-							class="pe-7s-science"></i>
-							<p>Notification</p>
+					<li><a href="notifications/notification-insert.jsp"> <i class="pe-7s-science"></i>
+							<p>Notifications</p>
 					</a></li>
 					<!-- <li><a href="maps.html"> <i class="pe-7s-map-marker"></i>
 							<p>Maps</p>
@@ -113,7 +137,7 @@
 					<li><a href="examRegistration.jsp"> <i class="pe-7s-bell"></i>
 							<p>Approval</p>
 					</a></li>
-					<li><a href="result-insert.jsp"> <i class="pe-7s-bell"></i>
+					<li class="active"><a href="result-insert.jsp"> <i class="pe-7s-bell"></i>
 							<p>Results</p>
 					</a></li>
 					<li class="active-pro"><a
@@ -135,29 +159,28 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Dashboard</a>
+						<a class="navbar-brand" href="#">Registration</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
 							<li><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> <i class="fa fa-dashboard"></i>
 							</a></li>
-							<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> <i class="fa fa-globe"></i> <b
 									class="caret"></b> <span class="notification">5</span>
 							</a>
-								<ul class="dropdown-menu" ng-controller="notificationController">
-									<li ng-repeat="n in notification"><a href="#">{{
-											n.message }}</a></li>
+								<ul class="dropdown-menu" >
+									<li ng-repeat="n in notification"><a href="#"></a></li>
 
-								</ul></li> -->
+								</ul></li>
 							<li><a href=""> <i class="fa fa-search"></i>
 							</a></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<!-- <li><a href=""> Account </a></li> -->
-							<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+							<li><a href=""> Account </a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> Dropdown <b class="caret"></b>
 							</a>
 								<ul class="dropdown-menu">
@@ -168,57 +191,82 @@
 									<li><a href="#">Something</a></li>
 									<li class="divider"></li>
 									<li><a href="#">Separated link</a></li>
-								</ul> </li> -->
+								</ul></li>
 							<li><a href="logout.jsp"> Log out </a></li>
 						</ul>
 					</div>
 				</div>
 			</nav>
-
-
 			<div class="content">
 				<div class="container-fluid">
-					<div class="row">
+					<div class="row" ng-controller="resultController">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Student Feedback</h4>
-									<p class="category">Feedback from student is listed here</p>
+									<h4 class="title">Result</h4>
+									<p class="category">Add Results</p>
 								</div>
-								<div class="content table-responsive table-full-width"
-									ng-controller="feedbackController">
+								<div class="content table-responsive table-full-width">
+									<table class="table table-hover table-striped">
+										<thead>
+											<th>Student ID</th>
+											<th>Subject Name</th>
+											<th>Result</th>
+											<th>Action</th>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<select class="" id="studentId" ng-model="studentId">
+													  <option ng-repeat="stu in student">{{ stu }}</option>
+													  
+													</select>
+												</td>
+												<td><select class="" id="subjectId" ng-model="subjectId">
+													  <option ng-repeat="sub in subject">{{ sub }}</option>
+													</select></td>
+													<td><input type="text" class="form-control" ng-model = "resultValue" id="resultValue"></td>
+												<td>
+													<button type="button" class="btn btn-info" ng-click="submit()">Apply</button>	
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div> 
+							</div>
+						</div>
+						
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Examination Table</h4>
+									<p class="category">Here is your examination details</p>
+								</div>
+								<div class="content table-responsive table-full-width" >
 									<table class="table table-hover table-striped">
 										<thead>
 											<th>ID</th>
-											<th>Subject</th>
-											<th>Message</th>
-											<th>date</th>
+											<th>Student Id</th>
+											<th>Subject Name</th>
+											<th>Result</th>
 										</thead>
 										<tbody>
-											<tr ng-repeat="f in feedback">
-												<td>{{ f.id }}</td>
-												<td>{{ f.subject }}</td>
-												<td>{{ f.message }}</td>
-												<td>{{ f.date }}</td>
-												<td ><button type="button" rel="tooltip" title="Remove"
-														id="delete" data="{{ f.id }}"
-														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(f.id)">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
+											<tr ng-repeat="r in results">
+												<td>{{ r.id }}</td>
+												<td>{{ r.stuId }}</td>
+												<td>{{ r.subjectName }}</td>
+												<td>{{ r.result }}</td>
+											</tr>									
 										</tbody>
 									</table>
 
 								</div>
 							</div>
 						</div>
-
-
 						<div class="col-md-12">
 							<div class="card card-plain"></div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -227,8 +275,8 @@
 				<div class="container-fluid">
 					<nav class="pull-left">
 						<ul>
-							<li><a href="#"> Home </a></li>
-							<li><a href="#"> SEUSL </a></li>
+							<li><a href="../"> Home </a></li>
+							<li><a href="#"> Company </a></li>
 							<li><a href="#"> Portfolio </a></li>
 							<li><a href="#"> Blog </a></li>
 						</ul>
@@ -238,12 +286,8 @@
 					</p>
 				</div>
 			</footer>
-
-
 		</div>
 	</div>
-
-
 </body>
 
 <!--   Core JS Files   -->
@@ -264,6 +308,5 @@
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
-
 
 </html>

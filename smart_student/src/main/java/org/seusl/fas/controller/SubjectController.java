@@ -182,4 +182,27 @@ public class SubjectController {
 			session.close();
 		}
 	}
+	
+	@RequestMapping(value="/allSubjectId", method=RequestMethod.GET)
+	public List<String> getSubjectId() {
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		List<String> list = new ArrayList<String>();
+
+		try {
+			t = session.beginTransaction();
+
+			list = session.createQuery("select id from Subject").list();
+			t.commit();
+		} catch (HibernateException e) {
+			if (t != null) {
+				t.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
 }

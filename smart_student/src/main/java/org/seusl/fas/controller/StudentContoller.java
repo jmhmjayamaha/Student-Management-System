@@ -208,4 +208,27 @@ public class StudentContoller {
 			session.close();
 		}
 	}
+	
+	@RequestMapping(value="/allStudentId", method=RequestMethod.GET)
+	public List<String> getStudentId() {
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		List<String> list = new ArrayList<String>();
+
+		try {
+			t = session.beginTransaction();
+
+			list = session.createQuery("select id from Student").list();
+			t.commit();
+		} catch (HibernateException e) {
+			if (t != null) {
+				t.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
 }
