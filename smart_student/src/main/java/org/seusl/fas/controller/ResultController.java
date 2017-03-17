@@ -13,10 +13,12 @@ import org.seusl.fas.dto.ResultRequest;
 import org.seusl.fas.model.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -101,5 +103,32 @@ public class ResultController {
 		}
 		
 		return list;
+	}
+	
+	@RequestMapping(value="/deleteResult/{id}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<?> deleteResult(@PathVariable("id") String id) {
+		Session session = sessionFactory.openSession();
+		Transaction t = null;
+		
+		try {
+			t = session.beginTransaction();
+			
+			session.delete(session.find(Result.class, new Integer(id)));
+			
+			t.commit();
+			
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		} catch(Exception e ) {
+			if(t != null) {
+				t.rollback();
+			}
+			JSONObject object = new JSONObject();
+			object.put("Error", e.getMessage());
+			return new ResponseEntity<Object>(object,HttpStatus.BAD_REQUEST);		
+		} finally {
+			session.close();
+		}
+		
 	}
 }

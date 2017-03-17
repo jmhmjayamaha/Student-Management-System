@@ -95,6 +95,18 @@
 				
 			);
 		}
+		$scope.deletefun = function(id) {
+			$http.delete("http://localhost:8080/api/deleteResult/" + id).then(
+				function() {
+					alert("successfully deleted");
+					location.reload();
+				}, 
+				function(response) {
+					$scope.errors = response.data;
+					alert(erorr.error);
+				}
+			);
+		}
 	}); 
 
 </script>
@@ -225,7 +237,22 @@
 												<td><select class="" id="subjectId" ng-model="subjectId">
 													  <option ng-repeat="sub in subject">{{ sub }}</option>
 													</select></td>
-													<td><input type="text" class="form-control" ng-model = "resultValue" id="resultValue"></td>
+													<!-- <td><input type="text" class="form-control" ng-model = "resultValue" id="resultValue"></td> -->
+												<td><select class="" id="subjectId" ng-model="resultValue">
+													  <option>A+</option>
+													  <option>A</option>
+													  <option>A-</option>
+													  <option>B+</option>
+													  <option>B</option>
+													  <option>B-</option>
+													  <option>C+</option>
+													  <option>C</option>
+													  <option>C-</option>
+													  <option>D+</option>
+													  <option>D</option>
+													  <option>E</option>
+													  <option>ab</option>
+													</select></td>
 												<td>
 													<button type="button" class="btn btn-info" ng-click="submit()">Apply</button>	
 												</td>
@@ -250,6 +277,7 @@
 											<th>Student Id</th>
 											<th>Subject Name</th>
 											<th>Result</th>
+											<th>Action</th>
 										</thead>
 										<tbody>
 											<tr ng-repeat="r in results">
@@ -257,6 +285,11 @@
 												<td>{{ r.stuId }}</td>
 												<td>{{ r.subjectName }}</td>
 												<td>{{ r.result }}</td>
+												<td ><button type="button" rel="tooltip" title="Remove"
+														id="delete" data="{{ r.id }}"
+														class="btn btn-danger btn-simple btn-xs" ng-click="deletefun(r.id)">
+														<i class="fa fa-times"></i>
+													</button></td>
 											</tr>									
 										</tbody>
 									</table>
