@@ -178,20 +178,20 @@
 							<li><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> <i class="fa fa-dashboard"></i>
 							</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> <i class="fa fa-globe"></i> <b
 									class="caret"></b> <span class="notification">5</span>
 							</a>
 								<ul class="dropdown-menu" >
 									<li ng-repeat="n in notification"><a href="#"></a></li>
 
-								</ul></li>
+								</ul></li> -->
 							<li><a href=""> <i class="fa fa-search"></i>
 							</a></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href=""> Account </a></li>
+							<!-- <li><a href=""> Account </a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"> Dropdown <b class="caret"></b>
 							</a>
@@ -203,7 +203,7 @@
 									<li><a href="#">Something</a></li>
 									<li class="divider"></li>
 									<li><a href="#">Separated link</a></li>
-								</ul></li>
+								</ul></li> -->
 							<li><a href="logout.jsp"> Log out </a></li>
 						</ul>
 					</div>
